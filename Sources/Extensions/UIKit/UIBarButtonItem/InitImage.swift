@@ -1,0 +1,72 @@
+//
+//  Copyright (c) 2026 Andrew Sokolov
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+
+import UIKit
+
+@MainActor
+extension UIBarButtonItem {
+    /// Creates a bar button item with the specified image and action handler.
+    ///
+    /// - Parameters:
+    ///   - image: The image to display on the button.
+    ///   - handler: The closure to execute when the button is tapped.
+    public convenience init(image: UIImage?, handler: @escaping UIActionHandler) {
+        self.init(image: image, primaryAction: UIAction(handler: handler))
+    }
+
+    /// Creates a bar button item with the specified system image and action handler.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the SF Symbol to display.
+    ///   - handler: The closure to execute when the button is tapped.
+    public convenience init(systemImage name: String, handler: @escaping UIActionHandler) {
+        self.init(image: UIImage(systemName: name), handler: handler)
+    }
+
+    /// Creates a bar button item with the specified system image and menu.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the SF Symbol to display.
+    ///   - menu: The menu to present when the button is tapped or pressed.
+    public convenience init(systemImage name: String, menu: UIMenu) {
+        self.init(image: UIImage(systemName: name), menu: menu)
+    }
+
+    /// Creates a prominent bar button item with the specified system image and action handler.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the SF Symbol to display.
+    ///   - handler: The closure to execute when the button is tapped.
+    public convenience init(prominentSystemImage name: String, handler: @escaping UIActionHandler) {
+        let configuration = UIImage.SymbolConfiguration(weight: .semibold)
+        self.init(image: UIImage(systemName: name, withConfiguration: configuration), handler: handler)
+    }
+
+    /// Creates a prominent bar button item with the specified system image and menu.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the SF Symbol to display.
+    ///   - menu: The menu to present when the button is tapped or pressed.
+    public convenience init(prominentSystemImage name: String, menu: UIMenu) {
+        let configuration = UIImage.SymbolConfiguration(weight: .semibold)
+        self.init(image: UIImage(systemName: name, withConfiguration: configuration), menu: menu)
+    }
+}
